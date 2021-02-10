@@ -24,10 +24,7 @@ func sorkByMask(subnet []model.Subnet) []model.Subnet {
 
 func sorkByIP(subnet []model.Subnet) []model.Subnet {
 	sort.SliceStable(subnet, func(i, j int) bool {
-		if getMask(subnet[i].Subnet) == getMask(subnet[j].Subnet) {
-			return bytes.Compare(net.ParseIP(getIP(subnet[i].Subnet)), net.ParseIP(getIP(subnet[j].Subnet))) < 0
-		}
-		return false
+		return bytes.Compare(net.ParseIP(getIP(subnet[i].Subnet)), net.ParseIP(getIP(subnet[j].Subnet))) < 0
 	})
 	return subnet
 }
